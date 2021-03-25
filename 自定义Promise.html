@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="./lib/Promise.js"></script>
+  <script src="./lib/MyPromise.js"></script>
 </head>
 <body>
   <script>
@@ -22,7 +22,7 @@
     //   console.log(res);
     // })
 
-    const p = new Promise((resolve, reject) => {
+    const p = new MyPromise((resolve, reject) => {
       setTimeout(() => {
         resolve(123)
       }, 0);
@@ -32,7 +32,10 @@
 
     p.then(res => {
       console.log(res);
-      throw 1
+      return new MyPromise((resolve,reject) => {
+        // reject(12)
+        throw 3
+      })
     }).then(res => {
       console.log(res);
     }).catch(err => {
